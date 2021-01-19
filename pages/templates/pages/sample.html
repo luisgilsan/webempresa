@@ -1,0 +1,48 @@
+{% extends 'core/layout.html' %}
+{% block title %}Muestra{% endblock %}
+
+<!-- navbar -->
+{% block navbar %}
+  <li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'home' %}">Inicio</a>
+  </li>
+  <li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'about' %}">Historia</a>
+  </li>
+  <li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'services' %}">Servicios</a>
+  </li>
+  <li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'store' %}">Visítanos</a>
+  </li>
+  <li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'contact' %}">Contacto</a>
+  </li>
+  <li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'blog' %}">Blog</a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <section class="page-section about-heading">
+    <div class="container">
+      <div class="about-heading-content mbtm">
+        <div class="row">
+          <div class="col-xl-9 col-lg-10 mx-auto">
+            <div class="bg-faded rounded p-5 forced">
+              <h2 class="section-heading mb-4">
+                <span class="section-heading-lower">{{page.title}}</span>
+              </h2>
+              <div class="section-content">
+                {{page.context|safe}}
+                {% if user.is_authenticated %}
+                  <p><a href="{% url 'admin:pages_page_change' page.id %}">Editar</a></p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
